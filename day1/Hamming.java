@@ -7,36 +7,33 @@ class Hamming {
         System.out.print("Enter a number: ");
         int n = Integer.parseInt(in.nextLine());
 
-        if (n < 0) {
-            System.out.println("NEGATIVE NUMBER ENTERED. INVALID INPUT");
+        if (n <= 0) {
+            System.out.println("INVALID INPUT");
             in.close();
             return;
         }
 
-        boolean status = true;
-
-        if (n < 2)
-            status = false;
-
-        int pf = 2;
         int num = n;
-        int count = 0;
+        int factor = 2;
+        boolean status = true;
+        boolean firstFactor = true;
+
+        System.out.print("Prime factors: ");
 
         while (num > 1) {
-            if (num % pf == 0) {
-                count++;
+            if (num % factor == 0) {
+                if (!firstFactor)
+                    System.out.print(" x ");
 
-                if (count == 1)
-                    System.out.print(pf);
-                else
-                    System.out.print(" x " + pf);
+                System.out.print(factor);
+                firstFactor = false;
 
-                num /= pf;
+                num = num / factor;
 
-                if (pf != 2 && pf != 3 && pf != 5)
+                if (factor != 2 && factor != 3 && factor != 5)
                     status = false;
             } else {
-                pf++;
+                factor++;
             }
         }
 
